@@ -85,11 +85,11 @@ def del_route():
 
 
 def dnsQuery(url):
-    # res = socket.getaddrinfo(url, None) # 通过本机设置的DNS服务器获取域名IP
-    # return [x[4][0] for x in res]
-    res = requests.get(f'https://dns.alidns.com/resolve?name={url}')  # 阿里DNS的DoH接口
+    res = socket.getaddrinfo(url, None) # 通过本机设置的DNS服务器获取域名IP
+    return [x[4][0] for x in res]
+    # res = requests.get(f'https://dns.alidns.com/resolve?name={url}')  # 阿里DNS的DoH接口
     # 其他DoH查询API记录：http://119.29.29.29/d?dn=www.baidu.com
-    return [i['data'] for i in res.json()['Answer']]
+    # return [i['data'] for i in res.json()['Answer']]
 
 
 class FolderBookmarkTaskBarIcon(wx.adv.TaskBarIcon):
@@ -113,7 +113,7 @@ class FolderBookmarkTaskBarIcon(wx.adv.TaskBarIcon):
     def CreatePopupMenu(self):
         '''生成菜单'''
         menu = wx.Menu()
-        menu.Append(self.MENU_ID1, 'TunMax v0.1.5')
+        menu.Append(self.MENU_ID1, 'TunMax v0.1.6')
         menu.Append(self.MENU_ID2, '显示/隐藏控制台')
         menu.Append(self.MENU_ID3, '退出')
         return menu
